@@ -79,5 +79,5 @@ reduce-axiom (c3 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _) (Y Y N Y ε) = refl
 reduce-axiom (c3 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _) (Y Y Y N ε) = refl
 reduce-axiom (c3 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _) (Y Y Y Y ε) = refl
 
-Example : SemiSimplicialType
+Example : Sst
 Example = sst C c-1 ∂ apex-axiom nadir-axiom reduce-axiom

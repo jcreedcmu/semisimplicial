@@ -1,25 +1,7 @@
 {-# OPTIONS --without-K #-}
 module Theory where
 
-open import SemiSimplicialType renaming ( SemiSimplicialType to Sst )
-open Sq
-
-inv : ∀ {ℓ} {A : Set ℓ} → {x y : A} → x ≡ y → y ≡ x
-inv refl = refl
-
-_•_ : ∀ {ℓ} {A : Set ℓ} → {x y z : A} → x ≡ y → y ≡ z → x ≡ z
-refl • refl = refl
-infixr 10 _•_
-
-ap : ∀ {ℓ ℓ'} {A : Set ℓ} {B : Set ℓ'} {x y : A} → (f : A → B) → x ≡ y → f x ≡ f y
-ap f refl = refl
-
-coe : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} {x y : A} → x ≡ y → P x → P y
-coe refl x = x
-
-data ℕ : Set where
- z : ℕ
- s : ℕ → ℕ
+open import SemiSimplicialType
 
 nadir-lemma : {C : Set} → (χ : Cube C) → leaf (nadir χ) ≤ χ
 nadir-lemma (leaf x) = ε

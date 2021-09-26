@@ -1,10 +1,6 @@
 {-# OPTIONS --without-K #-}
 module SemiSimplicialType where
-
-data _≡_ {ℓ} {A : Set ℓ} : (a b : A) → Set ℓ where refl : {a : A} → a ≡ a
-
-record Sq (A : Set) : Set where constructor ⟨_,_⟩ ; field fst snd : A
-open Sq
+open import Util public
 
 data Cube : (C : Set) → Set1 where
  leaf : {C : Set} → C → Cube C
@@ -21,12 +17,13 @@ data _≤_ : {C : Set} → Cube C → Cube C → Set1 where
 
 pole : {C : Set} → ({C : Set} → Sq C → C) → Cube C → C
 pole f (leaf c) = c
-pole f (node s) = f (pole f s)
+pole f (node sq) = f (pole f sq)
 
 nadir = λ {C : Set} → pole {C} fst
 apex = λ {C : Set} → pole {C} snd
 
-record SemiSimplicialType : Set1 where
+-- Semi-simplicial types
+record Sst : Set1 where
   constructor sst
   field
     C : Set
