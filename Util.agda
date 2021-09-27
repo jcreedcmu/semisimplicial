@@ -57,6 +57,14 @@ refl-left-id refl = refl
 l2r-post : {A : Set} {x y z : A} → (p : y ≡ z) (q : x ≡ y) (r : x ≡ z) → q • p ≡ r → p ≡ (inv q) • r
 l2r-post refl refl r h = h • refl-left-id r
 
+coeap : {A B : Set} {P : B → Set} {f : A → B} (x y : A) (p : x ≡ y) (e : (P (f x))) →
+       coe {P = P} (ap f p) e ≡ coe {P = λ x → P (f x)} p e
+coeap x .x refl e = refl
+
+coe2 : {A : Set} {P : A → Set} (a1 a2 b : A) (p1 : a1 ≡ b) (p2 : a2 ≡ b) (x1 : P a1) (x2 : P a2)
+   → coe {P = P} p1 x1 ≡ coe {P = P} p2 x2
+coe2 a1 .a1 .a1 refl refl x1 x2 = {!!}
+
 -- module Foo where
 
 --   P-prop : ∀ {ℓ ℓ'} (Cb : Set ℓ) (P : Cb → Set ℓ') → Set (ℓ ⊔ ℓ')
