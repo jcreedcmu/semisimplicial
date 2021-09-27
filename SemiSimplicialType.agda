@@ -31,5 +31,18 @@ record Sst : Set1 where
     ∂ : (c : C) → Cube C
     apex-axiom : (c : C) → apex (∂ c) ≡ c
     nadir-axiom : (c : C) → nadir (∂ c) ≡ ⋆
+    reduce-axiom : (c : C) {χ : Cube C} → χ ≤ ∂ c → ∂ (apex χ) ≡ χ
+
+data valid {C : Set} (∂ : (c : C) → Cube C) : (χ : Cube C) → Set1 where
+  v/ : (c : C) → valid ∂ (∂ c)
+
+record Sst' : Set1 where
+  constructor sst'
+  field
+    C : Set
+    ⋆ : C
+    ∂ : (c : C) → Cube C
+    apex-axiom : (c : C) → apex (∂ c) ≡ c
+    nadir-axiom : (c : C) → nadir (∂ c) ≡ ⋆
     int : (c : C) {χ : Cube C} → χ ≤ ∂ c → C
     int-∂ : (c : C) {χ : Cube C} (p : χ ≤ ∂ c) → ∂ (int c p) ≡ χ

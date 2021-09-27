@@ -116,5 +116,5 @@ int-∂ (c3 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _) (Y Y N Y ε) = refl
 int-∂ (c3 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _) (Y Y Y N ε) = refl
 int-∂ (c3 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _) (Y Y Y Y ε) = refl
 
-Example : Sst
-Example = sst C c-1 ∂ apex-axiom nadir-axiom int int-∂
+Example : Sst'
+Example = sst' C c-1 ∂ apex-axiom nadir-axiom int int-∂
