@@ -20,29 +20,29 @@ module _ (X : Sst) where
  data isDim (c : C) (n : ℕ) : Set1 where
    dim/ : cubeIsDim (∂ c) n → isDim c n
 
- ⋆-boundary-lemma : ∂ ⋆ ≡ leaf ⋆
- ⋆-boundary-lemma = ap ∂ (inv (nadir-axiom ⋆ ))
-                     • reduce-axiom ⋆ (nadir-lemma (∂ ⋆))
-                     • ap leaf (nadir-axiom ⋆)
+ -- ⋆-boundary-lemma : ∂ ⋆ ≡ leaf ⋆
+ -- ⋆-boundary-lemma = ap ∂ (inv (nadir-axiom ⋆ ))
+ --                     • reduce-axiom ⋆ (nadir-lemma (∂ ⋆))
+ --                     • ap leaf (nadir-axiom ⋆)
 
- any-cubedim-minus-1-has-cell : (χ : Cube C) → cubeIsDim χ z → C
- any-cubedim-minus-1-has-cell (leaf c) cid = c
+ -- any-cubedim-minus-1-has-cell : (χ : Cube C) → cubeIsDim χ z → C
+ -- any-cubedim-minus-1-has-cell (leaf c) cid = c
 
- any-cubedim-minus-1-is-leaf : (χ : Cube C) (p : cubeIsDim χ z) → χ ≡ leaf (any-cubedim-minus-1-has-cell χ p)
- any-cubedim-minus-1-is-leaf (leaf c) cid = refl
+ -- any-cubedim-minus-1-is-leaf : (χ : Cube C) (p : cubeIsDim χ z) → χ ≡ leaf (any-cubedim-minus-1-has-cell χ p)
+ -- any-cubedim-minus-1-is-leaf (leaf c) cid = refl
 
- any-boundary-leaf-is-leaf-⋆ : {c d : C} → ∂ c ≡ leaf d → ⋆ ≡ d
- any-boundary-leaf-is-leaf-⋆ {c} p = inv (nadir-axiom c) • ap nadir p
+ -- any-boundary-leaf-is-leaf-⋆ : {c d : C} → ∂ c ≡ leaf d → ⋆ ≡ d
+ -- any-boundary-leaf-is-leaf-⋆ {c} p = inv (nadir-axiom c) • ap nadir p
 
- any-dim-minus-1-has-leaf-⋆ : (c : C) (p : isDim c z) → ∂ c ≡ leaf ⋆
- any-dim-minus-1-has-leaf-⋆ c (dim/ p) = path • ap leaf (inv (any-boundary-leaf-is-leaf-⋆ path)) where
-         path : ∂ c ≡ leaf (any-cubedim-minus-1-has-cell (∂ c) p)
-         path = any-cubedim-minus-1-is-leaf (∂ c) p
+ -- any-dim-minus-1-has-leaf-⋆ : (c : C) (p : isDim c z) → ∂ c ≡ leaf ⋆
+ -- any-dim-minus-1-has-leaf-⋆ c (dim/ p) = path • ap leaf (inv (any-boundary-leaf-is-leaf-⋆ path)) where
+ --         path : ∂ c ≡ leaf (any-cubedim-minus-1-has-cell (∂ c) p)
+ --         path = any-cubedim-minus-1-is-leaf (∂ c) p
 
- -- ⋆ is the unique cell with dimension -1
+ -- -- ⋆ is the unique cell with dimension -1
 
- ⋆-has-dim-minus-1 : isDim ⋆ z
- ⋆-has-dim-minus-1 = dim/ (coe  {P = λ hole → cubeIsDim hole z} (inv ⋆-boundary-lemma) (cube/leaf ⋆))
+ -- ⋆-has-dim-minus-1 : isDim ⋆ z
+ -- ⋆-has-dim-minus-1 = dim/ (coe  {P = λ hole → cubeIsDim hole z} (inv ⋆-boundary-lemma) (cube/leaf ⋆))
 
- any-dim-minus-1-is-⋆ : (c : C) (p : isDim c z) → c ≡ ⋆
- any-dim-minus-1-is-⋆ c p = inv (apex-axiom c) • ap apex (any-dim-minus-1-has-leaf-⋆ c p)
+ -- any-dim-minus-1-is-⋆ : (c : C) (p : isDim c z) → c ≡ ⋆
+ -- any-dim-minus-1-is-⋆ c p = inv (apex-axiom c) • ap apex (any-dim-minus-1-has-leaf-⋆ c p)

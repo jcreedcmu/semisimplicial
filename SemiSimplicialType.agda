@@ -31,4 +31,5 @@ record Sst : Set1 where
     ∂ : (c : C) → Cube C
     apex-axiom : (c : C) → apex (∂ c) ≡ c
     nadir-axiom : (c : C) → nadir (∂ c) ≡ ⋆
-    reduce-axiom : (c : C) {χ : Cube C} → χ ≤ ∂ c → ∂ (apex χ) ≡ χ
+    int : (c : C) {χ : Cube C} → χ ≤ ∂ c → C
+    int-∂ : (c : C) {χ : Cube C} (p : χ ≤ ∂ c) → ∂ (int c p) ≡ χ

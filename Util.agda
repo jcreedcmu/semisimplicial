@@ -57,16 +57,16 @@ refl-left-id refl = refl
 l2r-post : {A : Set} {x y z : A} → (p : y ≡ z) (q : x ≡ y) (r : x ≡ z) → q • p ≡ r → p ≡ (inv q) • r
 l2r-post refl refl r h = h • refl-left-id r
 
-module Foo where
+-- module Foo where
 
-  P-prop : ∀ {ℓ ℓ'} (Cb : Set ℓ) (P : Cb → Set ℓ') → Set (ℓ ⊔ ℓ')
-  P-prop Cb P = (x y : Cb) → P x → P y → x ≡ y
+--   P-prop : ∀ {ℓ ℓ'} (Cb : Set ℓ) (P : Cb → Set ℓ') → Set (ℓ ⊔ ℓ')
+--   P-prop Cb P = (x y : Cb) → P x → P y → x ≡ y
 
-  P-prop-unique-path : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} (f : P-prop A P) (x y z : A) (p : y ≡ z)
-           → (px : P x) (py : P y) (pz : P z)
-           → p ≡ inv (f x y px py) • (f x z px pz)
-  P-prop-unique-path f x y .y refl px py pz = {!left-inverse (f x y !}
+--   P-prop-unique-path : ∀ {ℓ ℓ'} {A : Set ℓ} {P : A → Set ℓ'} (f : P-prop A P) (x y z : A) (p : y ≡ z)
+--            → (px : P x) (py : P y) (pz : P z)
+--            → p ≡ inv (f x y px py) • (f x z px pz)
+--   P-prop-unique-path f x y .y refl px py pz = {!left-inverse (f x y !}
 
-  lemma : (Cb : Set) (P : Cb → Set)
-          (x y : Cb) → P x → P y → (p q : x ≡ y) → p ≡ q
-  lemma = {!!}
+--   lemma : (Cb : Set) (P : Cb → Set)
+--           (x y : Cb) → P x → P y → (p q : x ≡ y) → p ≡ q
+--   lemma = {!!}
