@@ -61,9 +61,13 @@ coeap : {A B : Set} {P : B → Set} {f : A → B} (x y : A) (p : x ≡ y) (e : (
        coe {P = P} (ap f p) e ≡ coe {P = λ x → P (f x)} p e
 coeap x .x refl e = refl
 
-coe2 : {A : Set} {P : A → Set} (a1 a2 b : A) (p1 : a1 ≡ b) (p2 : a2 ≡ b) (x1 : P a1) (x2 : P a2)
-   → coe {P = P} p1 x1 ≡ coe {P = P} p2 x2
-coe2 a1 .a1 .a1 refl refl x1 x2 = {!!}
+≡over : ∀ {ℓ ℓ'} {A : Set ℓ} {B : A → Set ℓ'} {x y : A} (j : B x) (k : B y)
+    (p : x ≡ y) → Set ℓ'
+≡over j k refl = j ≡ k
+
+-- coe2 : {A : Set} {P : A → Set} (a1 a2 b : A) (p1 : a1 ≡ b) (p2 : a2 ≡ b) (x1 : P a1) (x2 : P a2)
+--    → coe {P = P} p1 x1 ≡ coe {P = P} p2 x2
+-- coe2 a1 .a1 .a1 refl refl x1 x2 = {!!}
 
 -- module Foo where
 
