@@ -22,6 +22,10 @@ pole f (node sq) = f (pole f sq)
 nadir = λ {C : Set} → pole {C} fst
 apex = λ {C : Set} → pole {C} snd
 
+-- Valid cubes are those in the image of ∂
+data valid {C : Set} (∂ : (c : C) → Cube C) : (χ : Cube C) → Set1 where
+  v/ : (c : C) → valid ∂ (∂ c)
+
 -- Semi-simplicial types
 record Sst : Set1 where
   constructor sst
@@ -31,28 +35,4 @@ record Sst : Set1 where
     ∂ : (c : C) → Cube C
     apex-axiom : (c : C) → apex (∂ c) ≡ c
     nadir-axiom : (c : C) → nadir (∂ c) ≡ ⋆
-    reduce-axiom : (c : C) {χ : Cube C} → χ ≤ ∂ c → ∂ (apex χ) ≡ χ
-
-data valid {C : Set} (∂ : (c : C) → Cube C) : (χ : Cube C) → Set1 where
-  v/ : (c : C) → valid ∂ (∂ c)
-
-record Sst' : Set1 where
-  constructor sst'
-  field
-    C : Set
-    ⋆ : C
-    ∂ : (c : C) → Cube C
-    apex-axiom : (c : C) → apex (∂ c) ≡ c
-    nadir-axiom : (c : C) → nadir (∂ c) ≡ ⋆
-    int : (c : C) {χ : Cube C} → χ ≤ ∂ c → valid ∂ χ
-
-module Foo (X : Sst') where
- open Sst' X
-
- thm : (χ : Cube C) → valid ∂ χ → ∂ (apex χ) ≡ χ
- thm .(∂ c) (v/ c) = ap ∂ (apex-axiom c)
-
- thm2 : (χ : Cube C) → ∂ (apex χ) ≡ χ → valid ∂ χ
- thm2 χ p = coe {P = λ h → valid ∂ h} p (v/ (apex χ))
-
- -- maybe these aren't inverses?
+    reduce-axiom : (c : C) {χ : Cube C} → χ ≤ ∂ c → valid ∂ χ
