@@ -44,5 +44,4 @@ record Sst' : Set1 where
     ∂ : (c : C) → Cube C
     apex-axiom : (c : C) → apex (∂ c) ≡ c
     nadir-axiom : (c : C) → nadir (∂ c) ≡ ⋆
-    int : (c : C) {χ : Cube C} → χ ≤ ∂ c → C
-    int-∂ : (c : C) {χ : Cube C} (p : χ ≤ ∂ c) → ∂ (int c p) ≡ χ
+    int : (c : C) {χ : Cube C} → χ ≤ ∂ c → valid ∂ χ
