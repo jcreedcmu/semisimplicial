@@ -45,3 +45,14 @@ record Sst' : Set1 where
     apex-axiom : (c : C) → apex (∂ c) ≡ c
     nadir-axiom : (c : C) → nadir (∂ c) ≡ ⋆
     int : (c : C) {χ : Cube C} → χ ≤ ∂ c → valid ∂ χ
+
+module Foo (X : Sst') where
+ open Sst' X
+
+ thm : (χ : Cube C) → valid ∂ χ → ∂ (apex χ) ≡ χ
+ thm .(∂ c) (v/ c) = ap ∂ (apex-axiom c)
+
+ thm2 : (χ : Cube C) → ∂ (apex χ) ≡ χ → valid ∂ χ
+ thm2 χ p = coe {P = λ h → valid ∂ h} p (v/ (apex χ))
+
+ -- maybe these aren't inverses?
